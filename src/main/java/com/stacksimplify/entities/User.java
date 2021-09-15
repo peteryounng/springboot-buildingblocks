@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name="user")
@@ -18,9 +19,11 @@ public class User implements Serializable{
 	@GeneratedValue
 	private Long id;
 	
+	@NotEmpty(message="Username is a required field")
 	@Column(name="USER_NAME", length=50, nullable=false, unique=true)
 	private String username;
 	
+	@Size(min=2, message="First name should have at least 2 characters")
 	@Column(name="FIRST_NAME", length=50, nullable=false)
 	private String firstname;
 	
