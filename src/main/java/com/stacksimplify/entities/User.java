@@ -1,13 +1,16 @@
 package com.stacksimplify.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="user")
@@ -38,6 +41,9 @@ public class User implements Serializable{
 	
 	@Column(name="SSN", length=50, nullable=false, unique=true)
 	private String ssn;
+	
+	@OneToMany(mappedBy="user") //Referencing field "user" in Orders table
+	private List<Order> order;
 
 	public User() {
 	}
@@ -51,6 +57,19 @@ public class User implements Serializable{
 		this.email = email;
 		this.role = role;
 		this.ssn = ssn;
+	}
+	
+	public User(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public List<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Order> order) {
+		this.order = order;
 	}
 
 	public Long getId() {
