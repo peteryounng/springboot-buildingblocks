@@ -1,6 +1,5 @@
 package com.stacksimplify.entities;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,12 +11,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.springframework.hateoas.RepresentationModel;
+
 @Entity
 @Table(name="user")
-public class User implements Serializable{
+public class User extends RepresentationModel<User>{
     
-    private static final long serialVersionUID = 1L;
-	//Primary key
+    //Primary key
 	@Id
 	@GeneratedValue
 	private Long id;
